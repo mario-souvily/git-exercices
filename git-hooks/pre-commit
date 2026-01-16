@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Demander à l'utilisateur s'il veut sauvegarder les infos
+read -p "Sauvegarder les infos du commit (y/[n]) ? " yn < /dev/tty
+yn=${yn:-n}
+
+case $yn in
+ [Yy]* ) 
+   # Créer le fichier avec la date et l'heure
+   echo "Commit vérifié le $(date)" > suivi/commitInfo.txt
+   # Ajouter le fichier au commit
+   git add suivi/commitInfo.txt
+   echo "Fichier suivi/commitInfo.txt ajouté au commit"
+   exit 0;;
+ [Nn]* ) 
+   echo "Pas de sauvegarde des infos"
+   exit 0;;
+esac
+
+exit 0
